@@ -1,4 +1,4 @@
-![hela Logo](https://github.com/hela/hela/raw/main/docs/source/_static/img/helatorch-logo-dark.png)
+![hela Logo](https://github.com/hela-ai/hela/blob/main/docs/source/_static/img/helatorch-logo-dark.png)
 
 ---
 
