@@ -5,4 +5,6 @@ from torch._functorch.aot_autograd import (
     aot_autograd_decompositions,
     KNOWN_TYPES,
     PytreeThunk,
+    pump,
+    sol
 )

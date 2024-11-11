@@ -9,10 +9,31 @@ import shutil
 from pathlib import Path
 from typing import Any, Callable, cast, Dict
 from urllib.request import urlopen
+import json
+from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 
+
+def read_pump_fun_and_save_as_dataset(file_path):
+    dataset = []
+    try:
+        with open(file_path, 'r') as file:
+            for line in file.readlines():
+                dataset.append(line.strip())
+
+        save_path = Path("pump_fun_dataset.json")
+        with open(save_path, 'w') as save_file:
+            json.dumps(dataset, save_file)
+
+        return dataset
+    except FileNotFoundError:
+        print(f"{file_path} not")
+        return []
+    except Exception as e:
+        print(f"error: {e}")
+        return []
 
 def get_disabled_issues() -> list[str]:
     reenabled_issues = os.getenv("REENABLED_ISSUES", "")

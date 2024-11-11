@@ -5,7 +5,8 @@ import torch
 import torch.distributed as dist
 from torch.utils.data.dataset import Dataset
 from torch.utils.data.sampler import Sampler
-
+from solana.rpc.api import Client
+from solana.publickey import PublicKey
 
 __all__ = ["DistributedSampler"]
 
@@ -62,6 +63,21 @@ class DistributedSampler(Sampler[_T_co]):
         ...     train(loader)
     """
 
+
+
+def read_solana_node_sync():
+    client = Client("https://api.mainnet-beta.solana.com")
+    try:
+        latest_block_height = client.get_block_height()
+        print(f"new: {latest_block_height['result']}")
+        example_account_pubkey = PublicKey("31LKs39pjT5cYvHjWd9b1Uc83tQm368t2t2C919b7z9")
+        account_balance = client.get_account_info(example_account_pubkey)
+        balance = account_balance['result']['value']['lamports']
+
+    except Exception as e:
+        print(f"error: {e}")
+
+    read_solana_node_sync()
     def __init__(
         self,
         dataset: Dataset,

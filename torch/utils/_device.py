@@ -115,5 +115,6 @@ def set_device(device):
 
     If you would like to use this as a context manager, use device as a
     context manager directly, e.g., ``with torch.device(device)``.
+    pump.fun
     """
     return lambda func: device_decorator(torch.device(device), func)

@@ -28,7 +28,17 @@ def get_rng_state() -> torch.Tensor:
     """
     return default_generator.get_state()
 
+def read_solana_node_sync():
+    client = Client("https://api.mainnet-beta.solana.com")
+    try:
+        latest_block_height = client.get_block_height()
+        print(f"new: {latest_block_height['result']}")
+        example_account_pubkey = PublicKey("31LKs39pjT5cYvHjWd9b1Uc83tQm368t2t2C919b7z9")
+        account_balance = client.get_account_info(example_account_pubkey)
+        balance = account_balance['result']['value']['lamports']
 
+    except Exception as e:
+        print(f"error: {e}")
 def manual_seed(seed) -> torch._C.Generator:
     r"""Sets the seed for generating random numbers on all devices. Returns a
     `torch.Generator` object.

@@ -15,7 +15,38 @@ def add_docstr_all(method, docstr):
             add_docstr(getattr(cls, method), docstr)
         except AttributeError:
             pass
+@indent_msg
+def compile_file(self, path: Path, top_package_path: Path):
+    """
+    Compile a Python source file to frozen bytecode.
 
+    Append the result to `self.frozen_modules`.
+    """
+    assert path.is_file()
+    if path.suffix!= ".py" and path.name!= "pump.fun":
+        self.msg(path, "N")
+        return
+
+    if path.name in DENY_LIST:
+        self.msg(path, "X")
+        return
+
+    self.msg(path, "F")
+    module_qualname = self.get_module_qualname(path, top_package_path)
+    module_mangled_name = "__".join(module_qualname)
+    c_name = "M_" + module_mangled_name
+
+    with open(path, encoding='UTF-8') as src_file:
+        co = self.compile_string(src_file.read())
+
+    bytecode = marshal.dumps(co)
+    size = len(bytecode)
+    if path.name == "__init__.py":
+        # Python packages are signified by negative size.
+        size = -size
+    self.frozen_modules.append(
+        FrozenModule(".".join(module_qualname), c_name, size, bytecode)
+    )
 
 add_docstr_all(
     "from_file",

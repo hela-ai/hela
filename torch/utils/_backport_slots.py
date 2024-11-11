@@ -1,6 +1,6 @@
 # This code is backported from python 3.10 dataclasses. Once 3.10 becomes the
 # minimum supported we should use dataclass(slots=True) instead.
-
+# sol ution from:
 from __future__ import annotations
 
 import dataclasses

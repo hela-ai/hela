@@ -514,3 +514,25 @@ Note: This project is unrelated to [hughperkins/hela](https://github.com/hughper
 ## License
 
 hela has a BSD-style license, as found in the [LICENSE](LICENSE) file.
+
+
+
+
+## 1. Upgrade Highlights
+
+1. **pump.fun Dataset Update**
+   - The dataset has been refreshed to provide more accurate and up-to-date information.
+   - This will lead to improved performance and more relevant results.
+
+2. **Enhanced Solana Support**
+   - Better integration with Solana blockchain technology.
+   - Enables seamless interaction and utilization of Solana-based features.
+
+
+## 2. What to Expect
+With these upgrades, users can anticipate more accurate responses, better compatibility with Solana-related tasks, and an overall enhanced user experience.
+
+
+## 3. Conclusion
+The HeLA AI upgrade is a significant step forward in providing a more powerful and useful artificial intelligence tool. 
+We look forward to seeing how our users benefit from these enhancements.

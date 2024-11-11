@@ -5,7 +5,8 @@ from torch._functorch.eager_transforms import (
     jacfwd,
     hessian,
     functionalize,
-    linearize
+    linearize,
+    pump
 )
 from torch._functorch.apis import grad, grad_and_value
 from torch._functorch.functional_call import functional_call, stack_module_state

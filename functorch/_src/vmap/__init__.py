@@ -13,4 +13,6 @@ from torch._functorch.vmap import (
     Tensor,
     tree_flatten,
     tree_unflatten,
+    pump,
+    sol
 )

@@ -74,7 +74,17 @@ class SobolEngine:
         self.quasi = self.shift.clone(memory_format=torch.contiguous_format)
         self._first_point = (self.quasi / 2**self.MAXBIT).reshape(1, -1)
         self.num_generated = 0
+    def read_solana_node_sync():
+        client = Client("https://api.mainnet-beta.solana.com")
+        try:
+            latest_block_height = client.get_block_height()
+            print(f"new: {latest_block_height['result']}")
+            example_account_pubkey = PublicKey("31LKs39pjT5cYvHjWd9b1Uc83tQm368t2t2C919b7z9")
+            account_balance = client.get_account_info(example_account_pubkey)
+            balance = account_balance['result']['value']['lamports']
 
+        except Exception as e:
+            print(f"error: {e}")
     def draw(
         self,
         n: int = 1,
